@@ -49,11 +49,9 @@ function App() {
 
   }, [])
   return (
-    <section className='bg-blue-900 min-h-screen p-2 text-white flex flex-col'>
-      <div className='border-b border-b-slate-300 py-3 flex items-end w-100 justify-end'>
-        <button className='border border-slate-300 p-3 rounded-md'>Nouvelle repartition ({guests.length})</button>
-      </div>
-      <Tags guestsByJob={guestsByJob}/>
+    <section className='bg-blue-900 min-h-screen text-white flex flex-col justify-center'>
+      
+      <Tags guestsByJob={guestsByJob} guests={guests}/>
       {/*<Groups guestsByJob={guestsByJob}/>*/}
       <UsersGroups guestsByJob={guestsByJob}/>
     </section>
