@@ -1,10 +1,10 @@
 [
-  { "nom": "BOUARE", "prenom": "Assanatou", "job": "BO" },
+  { "nom": "BOUARE", "prenom": "Assanatou", "job": "BO", "infos": ["C", "V"]  },
   { "nom": "DEMPURE", "prenom": "Anne", "job": "Trib Leader" },
   { "nom": "BUZY", "prenom": "Maryne", "job": "Trib Leader" },
   { "nom": "DELPECH", "prenom": "Ludovic", "job": "BA" },
   { "nom": "JOLLET", "prenom": "Clément", "job": "PSI" },
-  { "nom": "COHU", "prenom": "Sandra", "job": "BO", "infos": ["2b"] },
+  { "nom": "COHU", "prenom": "Sandra", "job": "BO"},
   { "nom": "AIT AMER MEZIANE", "prenom": "Khawla", "job": "PO" },
   { "nom": "BARNOT", "prenom": "Nicolas", "job": "DA" },
   { "nom": "BARON", "prenom": "Goulven", "job": "UX" },

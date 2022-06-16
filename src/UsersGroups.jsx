@@ -1,6 +1,7 @@
 import React from 'react'
 
 function UsersGroups({guestsByJob}) {
+  const [updatedGroup, setUpdatedGroup] = React.useState("");
   const [groups, setGroups] = React.useState(
     {
       "kronenburg": [],
@@ -24,13 +25,26 @@ function UsersGroups({guestsByJob}) {
         let groupToUpdate = group;
         const valuesToUpdate = currentGroups[groupToUpdate];
         if(valuesToUpdate.length >= 16) {
+          const labels = Object.keys(currentGroups);
+          const groupToUpdateIndex = labels.indexOf(groupToUpdate);
+
+          const groupsToBeUpdated = Object.entries(currentGroups).filter(([index, value]) => {
+            return value.length < 15 && index !== groupToUpdate;
+          }).map(([key]) => {
+            return key;
+          })
+          groupToUpdate = groupsToBeUpdated[0];
+          setUpdatedGroup(groupToUpdate);
+          /*
           const groupsToBeUpdated = Object.entries(currentGroups).filter(([, value]) => {
             return value.length < 15;
           }).map(([key]) => {
             return key;
           })
           groupToUpdate = groupsToBeUpdated[0];
+          */
         }
+        setUpdatedGroup(groupToUpdate);
         return groupToUpdate && userToAddIndex === -1  ? {
           ...currentGroups,
           [groupToUpdate]: [...currentGroups[groupToUpdate], user]
@@ -42,11 +56,16 @@ function UsersGroups({guestsByJob}) {
     (users) => {
       const groupsLabels = Object.keys(groups);
       const usersTohandle = users.slice(0);
+      let indexGroup = 0;
       for (let i = 0; i <  usersTohandle.length ; i += 1) {
         const user = usersTohandle[i];
-        const indexGroup = i % Object.keys(groupsLabels).length
-        const group = groupsLabels[indexGroup]
+        let group = groupsLabels[indexGroup];
+        if (!group) {
+          indexGroup = 0;
+          group = groupsLabels[indexGroup];
+        } // % Object.keys(groupsLabels).length
         addUserToGrpup(user, group);
+        indexGroup +=1;
       }
         Object.keys(groups).forEach(group => {
           users.slice(0,3)
@@ -62,7 +81,7 @@ function UsersGroups({guestsByJob}) {
     })
   }, [guestsByJob, handleGuests])
   return (
-    <div className='grid grid-cols-4 mx-2 py-3'>
+    <div className='grid grid-cols-5 mx-2 py-3'>
       {Object.keys(groups)
         .sort(function(a, b){
             if(a < b) { return -1; }
@@ -78,10 +97,18 @@ function UsersGroups({guestsByJob}) {
             </h3>
             {
               groups[beer].map(user => (
-                <p className='px-3 py-1 text-xs' key={user.id}>
-                  <span className='mr-1 uppercase'>[{user.job}]</span>
-                  <span className='mr-1'>{user.prenom}</span> 
-                  <span className='mr-1'>{user.nom}</span>  
+                <p className='px-3 py-1 text-xs flex justify-between items-center' key={user.id}>
+                  <p>
+                    <span className='mr-1 uppercase'>[{user.job}]</span>
+                    <span className='mr-1'>{user.prenom}</span> 
+                    <span className='mr-1'>{user.nom}</span>  
+                  </p>
+                  <p>
+                    {
+                      user.infos && user.infos.map((info, key) =>  <span className={`${info === 'V' && 'bg-pink-900'} ${info === 'C' && 'bg-green-900'} rounded-full mx-1 px-2 font-light text-xs text-white`}>{info}</span>)
+                    }
+                  
+                  </p>
                 </p>
               ))
             }
