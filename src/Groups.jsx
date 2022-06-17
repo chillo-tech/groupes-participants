@@ -93,9 +93,7 @@ function Groups({guestsByJob}) {
             {
               groups[beer].map(user => (
                 <p className='px-3 pb-1' key={user.id}>
-                  <span className='mr-1'>[{user.job}]</span>
-                  <span className='mr-1'>{user.prenom}</span> 
-                  <span className='mr-1'>{user.nom}</span>  
+                 
                 </p>
               ))
             }

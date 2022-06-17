@@ -2,7 +2,7 @@ import React from "react";
 
 function UsersGroups() {
   const [groups, setGroups] = React.useState({
-    kronenburg: [
+    Filou: [
       { nom: "COHU", prenom: "Sandra", job: "BO" },
       { nom: "BUZY", prenom: "Maryne", job: "Trib Leader" },
       { nom: "CHATEAUX", prenom: "Nelson", job: "PO" },
@@ -189,7 +189,7 @@ function UsersGroups() {
   });
 
   return (
-    <div className="grid grid-cols-5 mx-2 py-3">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 mx-2 py-3">
       {Object.keys(groups)
         .sort(function (a, b) {
           if (a < b) {
@@ -227,7 +227,7 @@ function UsersGroups() {
                       <span
                         className={`${info === "V" && "bg-pink-900"} ${
                           info === "C" && "bg-green-900"
-                        } rounded-full mx-1 px-2 font-light text-xs text-white`}
+                        } rounded-full ml-1 px-2 font-light text-xs text-white`}
                       >
                         {info}
                       </span>
